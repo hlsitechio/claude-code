@@ -1,0 +1,22 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+# Persistent volume for .claude config and session data
+[[mounts]]
+source = "claude-data"
+destination = "/home/rainkode/.claude"
+
+[[mounts]]
+source = "workspace"
+destination = "/home/rainkode/workspace"
+
+[[mounts]]
+source = "history"
+destination = "/commandhistory"
